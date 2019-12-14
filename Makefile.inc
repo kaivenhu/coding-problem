@@ -9,7 +9,7 @@ SRC_DIR := src
 LEETCODE_DIR := leetcode
 SHLIB = lib$(LIB_NAME).so
 
-UNITTEST_SUFFIX := _unittest.cc
+UNITTEST_SUFFIX := unittest.cc
 
 ########### Compile Options #############
 
