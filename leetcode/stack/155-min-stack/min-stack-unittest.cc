@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "min-stack.h"
+#include "min-stack-2.h"
+
+using namespace minstack_2;
 
 TEST (MinStackTest, basic) {
     MinStack stack;

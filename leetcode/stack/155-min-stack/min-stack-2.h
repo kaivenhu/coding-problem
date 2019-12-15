@@ -1,50 +1,26 @@
-#ifndef MIN_STACK_H_
-#define MIN_STACK_H_
+#ifndef MIN_STACK_2_H_
+#define MIN_STACK_2_H_
 #include <vector>
 
-namespace minstack {
+namespace minstack_2 {
 
 using std::vector;
 
 class Node {
     int num_;
-    int index_;
     Node* next_;
 public:
     Node(int n);
     ~Node() = default;
 
     int num(void) const;
-    int index(void) const;
-    void index(int i);
     void next(Node *n);
     Node* next(void) const;
 };
 
-class NodeRef {
-    Node* node_;
-public:
-    NodeRef();
-    NodeRef(Node* n);
-    int GetNum(void) const;
-    void AdjustIndex(int i);
-};
-
-class Heap {
-    vector<NodeRef> arr_;
-    void InsertAdjust(int index);
-    void DeleteAdjust(int index);
-public:
-    Heap() = default;
-    ~Heap() = default;
-    void Insert(Node *n);
-    void Delete(int index);
-    int Min(void) const;
-};
-
 class MinStack {
     Node* head_ = nullptr;
-    Heap heap_;
+    Node* min_ = nullptr;
 public:
     /** initialize your data structure here. */
     MinStack() = default;
@@ -70,4 +46,4 @@ public:
  * int param_4 = obj->getMin();
  */
 
-#endif /* MIN_STACK_H_ */
+#endif /* MIN_STACK_2_H_ */

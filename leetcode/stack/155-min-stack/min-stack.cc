@@ -1,5 +1,7 @@
 #include "min-stack.h"
 
+namespace minstack {
+
 Node::Node(int n):
     num_(n), index_(-1),
     next_(nullptr)
@@ -172,4 +174,6 @@ int MinStack::top() const
 int MinStack::getMin() const
 {
     return heap_.Min();
+}
+
 }
