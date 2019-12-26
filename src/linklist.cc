@@ -33,5 +33,34 @@ void FreeLinkList(ListNode **head)
     }
 }
 
+void FreeCycleLinkList(int size, ListNode **head)
+{
+    for (int i = 0; i < size && nullptr != (*head); ++i) {
+        auto tmp = (*head);
+        (*head) = (*head)->next;
+        free(tmp);
+    }
+}
+
+void MackCycleLinkList(const std::vector<int> &vec, int pos, ListNode **head)
+{
+    FreeLinkList(head);
+    Vec2LinkList(vec, head);
+    if (0 > pos) {
+        return;
+    }
+    ListNode *cycle_pos = nullptr;
+    ListNode *node = nullptr;
+    ListNode *tail_node = nullptr;
+    int i = 0;
+    for (node = (*head); nullptr != node; node = node->next, ++i) {
+        if (i == pos) {
+            cycle_pos = node;
+        }
+        tail_node = node;
+    }
+    tail_node->next = cycle_pos;
+}
+
 }
 }

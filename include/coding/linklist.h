@@ -15,6 +15,9 @@ struct ListNode {
 void Vec2LinkList(const std::vector<int> &vec, ListNode **head);
 void FreeLinkList(ListNode **head);
 
+void MackCycleLinkList(const std::vector<int> &vec, int pos, ListNode **head);
+void FreeCycleLinkList(int size, ListNode **head);
+
 }
 }
 
