@@ -1,8 +1,10 @@
 #include <cstdlib>
+#include <string>
 
+#include <gtest/gtest.h>
 #include <coding/linklist.h>
 
-namespace coding{
+namespace coding {
 namespace linklist {
 
 void Vec2LinkList(const std::vector<int> &vec, ListNode **head)
@@ -60,6 +62,45 @@ void MackCycleLinkList(const std::vector<int> &vec, int pos, ListNode **head)
         tail_node = node;
     }
     tail_node->next = cycle_pos;
+}
+
+::testing::AssertionResult
+IsLinkListEqual(ListNode *answer, ListNode *expect)
+{
+    ::testing::AssertionResult result = ::testing::AssertionFailure();
+    int idx = 0;
+    bool is_failure = false;
+    ListNode *cur_ans = answer;
+    ListNode *cur_exp = expect;
+    for (; nullptr != cur_ans && nullptr != cur_exp;
+            cur_ans = cur_ans->next, cur_exp = cur_exp->next) {
+        if (cur_ans->val != cur_exp->val) {
+            is_failure = true;
+            break;
+        }
+        ++idx;
+    }
+    if (is_failure
+        || (nullptr != cur_ans || nullptr != cur_exp)) {
+        result << "Difference found: "
+            << ((nullptr != cur_ans) ? std::to_string(cur_ans->val) : "NULL")
+            << " != "
+            << ((nullptr != cur_exp) ? std::to_string(cur_exp->val) : "NULL")
+            << ", @" << idx;
+        return result;
+    }
+    return ::testing::AssertionSuccess();
+}
+
+::testing::AssertionResult
+IsLinkListEqual(ListNode *answer, const std::vector<int> &expect)
+{
+    ListNode *expect_list = nullptr;
+    ::testing::AssertionResult result = ::testing::AssertionFailure();
+    Vec2LinkList(expect, &expect_list);
+    result = IsLinkListEqual(answer, expect_list);
+    FreeLinkList(&expect_list);
+    return result;
 }
 
 }
