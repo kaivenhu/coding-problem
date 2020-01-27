@@ -70,6 +70,43 @@ void FreeBinaryTree(TreeNode *root)
     }
 }
 
+static bool ValidateBst(TreeNode *root, int *left, int *right)
+{
+    int val;
+    if (nullptr != root->left) {
+        if (!ValidateBst(root->left, left, &val)) {
+            return false;
+        }
+        if (val >= root->val) {
+            return false;
+        }
+    } else {
+        *left = root->val;
+    }
+    if (nullptr != root->right) {
+        if (!ValidateBst(root->right, &val, right)) {
+            return false;
+        }
+        if (val <= root->val) {
+            return false;
+        }
+    } else {
+        *right = root->val;
+    }
+    return true;
+}
+
+bool IsValidBst(TreeNode *root)
+{
+    int left;
+    int right;
+    if (nullptr == root) {
+        return true;
+    } else {
+        return ValidateBst(root, &left, &right);
+    }
+}
+
 
 }
 }

@@ -20,6 +20,7 @@ public:
 std::string SerializedBinaryTree(TreeNode *root);
 TreeNode* DeserializedBinaryTree(const std::string &data);
 void FreeBinaryTree(TreeNode *root);
+bool IsValidBst(TreeNode *root);
 
 }
 }

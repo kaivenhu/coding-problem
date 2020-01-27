@@ -1,0 +1,9 @@
+#ifndef VALIDATE_BINARY_SEARCH_TREE
+#define VALIDATE_BINARY_SEARCH_TREE
+
+namespace binary_tree {
+
+
+}
+
+#endif /* VALIDATE_BINARY_SEARCH_TREE */
