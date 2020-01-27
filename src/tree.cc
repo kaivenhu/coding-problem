@@ -1,5 +1,6 @@
 #include <string>
 #include <queue>
+#include <sstream>
 
 #include <coding/tree.h>
 
@@ -8,6 +9,7 @@ namespace tree {
 
 using std::queue;
 using std::string;
+using std::istringstream;
 
 
 string SerializedBinaryTree(TreeNode *root)
@@ -27,6 +29,26 @@ string SerializedBinaryTree(TreeNode *root)
         bfs_queue.pop();
     }
     return ans;
+}
+
+TreeNode* DeserializedBinaryTree(const string &data)
+{
+    istringstream input(data);
+    queue<TreeNode **> bfs_queue;
+    string t;
+    TreeNode *root = nullptr;
+    bfs_queue.push(&root);
+    while (input >> t) {
+        TreeNode **cur = bfs_queue.front();
+        if ("#" != t) {
+            int val = std::stoi(t);
+            *cur = new TreeNode(val);
+            bfs_queue.push(&((*cur)->left));
+            bfs_queue.push(&((*cur)->right));
+        }
+        bfs_queue.pop();
+    }
+    return root;
 }
 
 void FreeBinaryTree(TreeNode *root)
