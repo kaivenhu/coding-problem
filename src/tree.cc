@@ -35,11 +35,13 @@ void FreeBinaryTree(TreeNode *root)
     bfs_queue.push(root);
     while (!bfs_queue.empty()) {
         auto cur = bfs_queue.front();
-        if (nullptr != cur->left) {
-            bfs_queue.push(cur->left);
-        }
-        if (nullptr != cur->right) {
-            bfs_queue.push(cur->right);
+        if (nullptr != cur) {
+            if (nullptr != cur->left) {
+                bfs_queue.push(cur->left);
+            }
+            if (nullptr != cur->right) {
+                bfs_queue.push(cur->right);
+            }
         }
         bfs_queue.pop();
         delete cur;
