@@ -144,6 +144,21 @@ void RBTree::Insert(int v)
     AdjustRBTree(z);
 }
 
+bool RBTree::IsExistVal(const int val) const
+{
+    TreeNode *cur = this->root_;
+    while (nullptr != cur) {
+        if (val == cur->val) {
+            return true;
+        } else if (val < cur->val) {
+            cur = cur->left;
+        } else {
+            cur = cur->right;
+        }
+    }
+    return false;
+}
+
 
 }
 }

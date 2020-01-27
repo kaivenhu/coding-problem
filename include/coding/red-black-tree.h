@@ -18,6 +18,7 @@ public:
     TreeNode* root(void) const;
 
     void Insert(int val);
+    bool IsExistVal(const int val) const;
 };
 
 }
