@@ -28,12 +28,25 @@ static string RightPreorder(TreeNode *root)
     return s;
 }
 
+static bool ValidateSymmetric(TreeNode *left, TreeNode *right)
+{
+    if (nullptr == left && nullptr == right) {
+        return true;
+    } else if (left && right && (left->val == right->val)) {
+        return ValidateSymmetric(left->left, right->right)
+            && ValidateSymmetric(left->right, right->left);
+    } else {
+        return false;
+    }
+}
+
 bool Solution::isSymmetric(TreeNode *root)
 {
     if (nullptr == root) {
         return true;
     }
-    return LeftPreorder(root->left) == RightPreorder(root->right);
+    return ValidateSymmetric(root->left, root->right);
+    //return LeftPreorder(root->left) == RightPreorder(root->right);
 }
 
 
