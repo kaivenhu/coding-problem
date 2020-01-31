@@ -1,5 +1,6 @@
 #include <string>
 #include <queue>
+#include <stack>
 #include <sstream>
 
 #include <coding/tree.h>
@@ -8,6 +9,7 @@ namespace coding {
 namespace tree {
 
 using std::queue;
+using std::stack;
 using std::string;
 using std::istringstream;
 
@@ -81,6 +83,29 @@ static bool ValidateBst(TreeNode *root, TreeNode *lower, TreeNode *upper)
     }
     return (ValidateBst(root->left, lower, root))
         && (ValidateBst(root->right, root, upper));
+}
+
+bool IsValidBstLoopWay(TreeNode *root)
+{
+    TreeNode *last = nullptr;
+    TreeNode *cur = root;
+    stack<TreeNode *> inorder_stack;
+    while (!inorder_stack.empty() || cur) {
+        while (cur) {
+            inorder_stack.push(cur);
+            cur = cur->left;
+        }
+        cur = inorder_stack.top();
+        inorder_stack.pop();
+        if (cur) {
+            if (last && last->val >= cur->val) {
+                return false;
+            }
+            last = cur;
+            cur = cur->right;
+        }
+    }
+    return true;
 }
 
 bool IsValidBst(TreeNode *root)
