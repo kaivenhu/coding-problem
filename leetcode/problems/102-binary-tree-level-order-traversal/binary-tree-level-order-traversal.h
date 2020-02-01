@@ -18,6 +18,8 @@ using namespace coding::tree;
  * };
  */
 class Solution {
+    vector<vector<int>> ans;
+    void levelOrderBase(TreeNode* root, unsigned int level);
 public:
     vector<vector<int>> levelOrder(TreeNode* root);
 };

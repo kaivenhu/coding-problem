@@ -6,44 +6,26 @@ namespace traverse_tree {
 
 using std::queue;
 
+void Solution::levelOrderBase(TreeNode* root, unsigned int level)
+{
+    if (nullptr == root) {
+        return;
+    }
+    if (ans.size() <= level) {
+        vector<int> x;
+        x.push_back(root->val);
+        ans.push_back(x);
+    } else {
+        ans[level].push_back(root->val);
+    }
+    levelOrderBase(root->left, 1 + level);
+    levelOrderBase(root->right, 1 + level);
+}
+
 vector<vector<int>> Solution::levelOrder(TreeNode* root)
 {
-    vector<int> level_list;
-    vector<vector<int>> ans_list;
-    queue<TreeNode *> bfs_queue;
-    bool is_next_level = true;
-
-    if (nullptr == root) {
-        return ans_list;
-    }
-    bfs_queue.push(root);
-    while (!bfs_queue.empty()) {
-        TreeNode *cur = bfs_queue.front();
-        if (nullptr == cur) {
-            ans_list.push_back(level_list);
-            level_list.clear();
-            is_next_level = true;
-        } else {
-            level_list.push_back(cur->val);
-            if (nullptr != cur->left) {
-                if (is_next_level) {
-                    is_next_level = false;
-                    bfs_queue.push(nullptr);
-                }
-                bfs_queue.push(cur->left);
-            }
-            if (nullptr != cur->right) {
-                if (is_next_level) {
-                    is_next_level = false;
-                    bfs_queue.push(nullptr);
-                }
-                bfs_queue.push(cur->right);
-            }
-        }
-        bfs_queue.pop();
-    }
-    ans_list.push_back(level_list);
-    return ans_list;
+    levelOrderBase(root, 0);
+    return ans;
 }
 
 }
