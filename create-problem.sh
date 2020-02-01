@@ -1,15 +1,16 @@
 #!/bin/sh
 
 number=${1}
-name=${2}
+raw_name=${2}
 namespace=${3}
 
 makefilesrc="leetcode/problems/0-example/Makefile"
+name="`echo ${raw_name} | sed -r 's/ /-/g' | tr [A-Z] [a-z]`"
 dirname="leetcode/problems/${number}-${name}"
 header="${name}.h"
 headerfile="${dirname}/${header}"
 makefile="${dirname}/Makefile"
-headerdefine=`echo ${name} | sed -r 's/-/_/g' | tr [a-z] [A-Z]`
+headerdefine="`echo ${name} | sed -r 's/-/_/g' | tr [a-z] [A-Z]`_H_"
 srcfile="${dirname}/${name}.cc"
 unittestfile="${dirname}/${name}-unittest.cc"
 
