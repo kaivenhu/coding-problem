@@ -7,6 +7,7 @@ LIB_NAME=coding
 INCLUDE_DIR=$(PROJ_PATH)/include
 SRC_DIR := src
 LEETCODE_DIR := leetcode
+CPP_PRIMER := cpp-primer
 SHLIB = lib$(LIB_NAME).so
 
 UNITTEST_SUFFIX := unittest.cc

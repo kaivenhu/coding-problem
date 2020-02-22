@@ -1,10 +1,12 @@
 include Makefile.inc
 
-.PHONY: all $(SRC_DIR) $(LEETCODE_DIR) clean clean-$(SRC_DIR) clean-$(LEETCODE_DIR)
+.PHONY: all $(SRC_DIR) $(LEETCODE_DIR) clean clean-$(SRC_DIR) clean-$(LEETCODE_DIR) \
+	$(CPP_PRIMER) clean-$(CPP_PRIMER)
 
-all: $(SRC_DIR) $(LEETCODE_DIR)
 
-clean: clean-$(SRC_DIR) clean-$(LEETCODE_DIR)
+all: $(SRC_DIR) $(LEETCODE_DIR) $(CPP_PRIMER)
+
+clean: clean-$(SRC_DIR) clean-$(LEETCODE_DIR) clean-$(CPP_PRIMER)
 
 $(SRC_DIR):
 	$(MAKE) -C $@;
@@ -17,4 +19,10 @@ $(LEETCODE_DIR):
 
 clean-$(LEETCODE_DIR):
 	$(MAKE) clean -C $(LEETCODE_DIR) Dleetcode-problem=$(Dleetcode-problem);
+
+$(CPP_PRIMER):
+	$(MAKE) -C $@;
+
+clean-$(CPP_PRIMER):
+	$(MAKE) clean -C $(CPP_PRIMER);
 
