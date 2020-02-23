@@ -28,6 +28,7 @@ public:
     StrVec();
     ~StrVec();
     StrVec(const StrVec &src);
+    StrVec(StrVec &&src) noexcept;
     StrVec& operator=(StrVec vec) noexcept;
 
     void PushBack(const std::string &val);

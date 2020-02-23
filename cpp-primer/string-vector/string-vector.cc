@@ -31,6 +31,12 @@ StrVec::StrVec(const StrVec &src) :
     cap_ = end_ = data.second;
 }
 
+StrVec::StrVec(StrVec &&src) noexcept :
+    begin_(src.begin_), end_(src.end_), cap_(src.cap_)
+{
+    src.begin_ = src.end_ = src.cap_ = nullptr;
+}
+
 StrVec& StrVec::operator=(StrVec vec) noexcept
 {
     swap(*this, vec);
