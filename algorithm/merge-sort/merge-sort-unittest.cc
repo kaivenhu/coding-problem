@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cstdlib>
+#include <ctime>
 
 #include <gtest/gtest.h>
 #include <coding/vec.h>
@@ -27,13 +28,15 @@ TEST(merge_sort, basic)
 
 TEST(merge_sort, random)
 {
+    srand(time(NULL));
     for (int run = 0; run < 1000; ++run) {
         vector<int> vec;
         vector<int> ans;
 
         int num = rand() % 1000;
         for (int i = 0; i < num; ++i) {
-            vec.push_back(rand());
+            int x = (rand() % 1000) - 500;
+            vec.push_back(x);
         }
         ans = vec;
         std::sort(ans.begin(), ans.end());
