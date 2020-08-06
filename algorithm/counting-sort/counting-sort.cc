@@ -21,8 +21,8 @@ vector<int> CountingSort::sort(const vector<int> &src)
     for (decltype(counter.size()) i = 1; i < counter.size(); ++i) {
         counter[i] += counter[i - 1];
     }
-    for (const auto v : src) {
-        vec[--counter[v]] = v;
+    for (auto v = src.rbegin(); v != src.rend(); ++v) {
+        vec[--counter[*v]] = *v;
     }
     return vec;
 }
