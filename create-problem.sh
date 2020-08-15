@@ -43,14 +43,14 @@ fi
 
 # Create header file
 echo "Create ${headerfile} with namespace ${namespace} and define ${headerdefine}"
-echo -n "#ifndef ${headerdefine}\n#define ${headerdefine}\n\nnamespace ${namespace} {\n\n\n}\n\n#endif /* ${headerdefine} */\n" >> ${headerfile}
+echo -n "#ifndef ${headerdefine}\n#define ${headerdefine}\n\nnamespace ${namespace}\n{\n\n\n} // ${namespace}\n\n#endif /* ${headerdefine} */\n" >> ${headerfile}
 
 # Create src file
 echo "Create ${srcfile} with namespace ${namespace}"
-echo -n "#include \"${header}\"\n\nnamespace ${namespace} {\n\n\n}\n" >> ${srcfile}
+echo -n "#include \"${header}\"\n\nnamespace ${namespace}\n{\n\n\n} // ${namespace}\n" >> ${srcfile}
 
 # Create unittest file
 echo "Create ${unittestfile} with namespace ${namespace}"
 echo -n "#include <gtest/gtest.h>\n\n#include \"${header}\"\n\nusing namespace ${namespace};\n\n" >> ${unittestfile}
 echo -n "TEST(${namespace}, basic)\n{\n}\n\n" >> ${unittestfile}
-echo -n "int main(int argc, char** argv)\n{\n    ::testing::InitGoogleTest(&argc, argv);\n    return RUN_ALL_TESTS();\n}\n" >> ${unittestfile}
+echo -n "int main(int argc, char **argv)\n{\n    ::testing::InitGoogleTest(&argc, argv);\n    return RUN_ALL_TESTS();\n}\n" >> ${unittestfile}
