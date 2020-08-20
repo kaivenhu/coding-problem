@@ -43,11 +43,11 @@ fi
 
 # Create header file
 echo "Create ${headerfile} with namespace ${namespace} and define ${headerdefine}"
-echo -n "#ifndef ${headerdefine}\n#define ${headerdefine}\n\nnamespace ${namespace}\n{\n\n\n} // ${namespace}\n\n#endif /* ${headerdefine} */\n" >> ${headerfile}
+echo -n "#ifndef ${headerdefine}\n#define ${headerdefine}\n\nnamespace ${namespace}\n{\n\n\n}  // namespace ${namespace}\n\n#endif /* ${headerdefine} */\n" >> ${headerfile}
 
 # Create src file
 echo "Create ${srcfile} with namespace ${namespace}"
-echo -n "#include \"${header}\"\n\nnamespace ${namespace}\n{\n\n\n} // ${namespace}\n" >> ${srcfile}
+echo -n "#include \"${header}\"\n\nnamespace ${namespace}\n{\n\n\n}  // namespace ${namespace}\n" >> ${srcfile}
 
 # Create unittest file
 echo "Create ${unittestfile} with namespace ${namespace}"
