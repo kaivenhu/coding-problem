@@ -4,6 +4,19 @@ namespace remove_list {
 
 ListNode* Solution::removeElements(ListNode* head, int val)
 {
+    ListNode **cur = &head;
+
+    while (nullptr != *cur) {
+        if (val == (*cur)->val) {
+            auto tmp = (*cur);
+            *cur = (*cur)->next;
+            free(tmp);
+        } else {
+            cur = &((*cur)->next);
+        }
+    }
+    return head;
+    /*
     ListNode *curNode = head;
     ListNode *lastNode = nullptr;
 
@@ -23,6 +36,7 @@ ListNode* Solution::removeElements(ListNode* head, int val)
         }
     }
     return head;
+    */
 }
 
 }
