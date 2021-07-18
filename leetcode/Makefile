@@ -1,6 +1,6 @@
 include ../Makefile.inc
 
-TAG_DIR=stack heap
+TAG_DIR=problems
 
 .PHONY: all clean $(TAG_DIR)
 

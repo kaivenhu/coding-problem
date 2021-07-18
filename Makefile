@@ -15,10 +15,10 @@ clean-$(SRC_DIR):
 	$(MAKE) clean -C $(SRC_DIR);
 
 $(LEETCODE_DIR):
-	$(MAKE) -C $@ Dleetcode-problem=$(Dleetcode-problem);
+	$(MAKE) -C $@ Dleetcode-problem=$(problem);
 
 clean-$(LEETCODE_DIR):
-	$(MAKE) clean -C $(LEETCODE_DIR) Dleetcode-problem=$(Dleetcode-problem);
+	$(MAKE) clean -C $(LEETCODE_DIR) Dleetcode-problem=$(problem);
 
 clean-$(CPP_PRIMER):
 	$(MAKE) clean -C $(CPP_PRIMER);
