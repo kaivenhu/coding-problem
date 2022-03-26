@@ -10,7 +10,8 @@ namespace linklist {
 struct ListNode {
     int val;
     ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
+    ListNode(int x, ListNode* n): val(x), next(n) {}
+    ListNode(int x): ListNode(x, nullptr) {}
 };
 
 void Vec2LinkList(const std::vector<int> &vec, ListNode **head);
